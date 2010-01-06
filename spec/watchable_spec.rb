@@ -24,6 +24,16 @@ describe "Watchable" do
         Subject.class_method
       end
       
+      it "should not modify the original method return value" do
+        Subject.send(:observe, :instance_method, :notify => MyObserver)
+        Subject.send(:observe, :class_method, :notify => MyObserver, :class_method => true)
+        
+        MyObserver.expects(:notify).twice
+
+        Subject.new.instance_method.should == "hi from instance method!"
+        Subject.class_method.should == "hi from class method!"
+      end
+      
       context "observing methods with parameters" do
         before(:all) do
           Subject.send(:include, Watchable)
