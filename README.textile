@@ -54,6 +54,8 @@ If we wanted to use instances of the Observer instead of the class itself, the d
   
 In summary, any object that responds to *_notify_* will be accepted.
 
+And... that's it! Every time the observed method is called, the _notify_ method from the defined Observer will be called *before* it, then it will run normally.
+
 h2. Note on Patches/Pull Requests
  
 * Fork the project.
