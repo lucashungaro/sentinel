@@ -23,6 +23,22 @@ describe "Watchable" do
         
         Subject.class_method
       end
+      
+      context "observing methods with parameters" do
+        before(:all) do
+          Subject.send(:include, Watchable)
+        end
+
+        it "should pass all parameters of the observed methods to the Observer" do
+          Subject.send(:observe, :class_method_with_params, :notify => MyObserver, :class_method => true)
+          Subject.send(:observe, :instance_method_with_params, :notify => MyObserver)
+
+          MyObserver.expects(:notify).twice.with("texto", 1)
+
+          Subject.class_method_with_params("texto", 1)
+          Subject.new.instance_method_with_params("texto", 1)
+        end
+      end
     end
     
     context "without the minimum required options" do
@@ -44,7 +60,6 @@ describe "Watchable" do
         Subject.send(:observe, :class_method, :class_method => true) rescue nil
       end
     end
-    
   end
 
 end

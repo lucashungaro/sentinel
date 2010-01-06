@@ -1,5 +1,5 @@
 class MyObserver
-  def self.notify
+  def self.notify(*args)
     "Observing!"
   end
 end
