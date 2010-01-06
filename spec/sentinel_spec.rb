@@ -7,7 +7,7 @@ describe "Sentinel" do
     
     context "with the minimum required options" do
       before(:all) do
-        Subject.send(:include, Watchable)
+        Subject.send(:include, Sentinel)
       end
 
       it "should notify the specified Observer when calling a class method" do
@@ -26,7 +26,7 @@ describe "Sentinel" do
       
       context "observing methods with parameters" do
         before(:all) do
-          Subject.send(:include, Watchable)
+          Subject.send(:include, Sentinel)
         end
 
         it "should pass all parameters of the observed methods to the Observer" do
@@ -43,7 +43,7 @@ describe "Sentinel" do
     
     context "without the minimum required options" do
       before(:all) do
-        Subject.send(:include, Watchable)
+        Subject.send(:include, Sentinel)
       end
 
       it "should notify the specified Observer when calling a class method" do
