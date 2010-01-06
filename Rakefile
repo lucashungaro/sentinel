@@ -5,12 +5,13 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "watcher"
-    gem.summary = %Q{TODO: one-line summary of your gem}
+    gem.summary = %Q{Transparent Observers for your Ruby code}
     gem.description = %Q{TODO: longer description of your gem}
     gem.email = "lucashungaro@gmail.com"
     gem.homepage = "http://github.com/lucashungaro/watcher"
     gem.authors = ["Lucas Húngaro"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.add_development_dependency "mocha", ">= 0.9.8"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new

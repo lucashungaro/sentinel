@@ -1,6 +1,6 @@
 = watcher
 
-Description goes here.
+Transparent (unobtrusive) Observers for your Rubies.
 
 == Note on Patches/Pull Requests
  
