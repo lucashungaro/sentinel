@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Lucas H\303\272ngaro"]
   s.date = %q{2010-01-06}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{Transparent (unobtrusive) Observers for your Ruby code}
   s.email = %q{lucashungaro@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -29,13 +29,14 @@ Gem::Specification.new do |s|
      "spec/fixtures/subject.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
-     "spec/watchable_spec.rb"
+     "spec/watchable_spec.rb",
+     "watcher.gemspec"
   ]
   s.homepage = %q{http://github.com/lucashungaro/watcher}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{Transparent Observers for your Ruby code}
+  s.summary = %q{Transparent (unobtrusive) Observers for your Ruby code}
   s.test_files = [
     "spec/fixtures/my_observer.rb",
      "spec/fixtures/subject.rb",

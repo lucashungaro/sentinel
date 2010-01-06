@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "watcher"
     gem.summary = %Q{Transparent (unobtrusive) Observers for your Ruby code}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.description = %Q{Transparent (unobtrusive) Observers for your Ruby code}
     gem.email = "lucashungaro@gmail.com"
     gem.homepage = "http://github.com/lucashungaro/watcher"
     gem.authors = ["Lucas Húngaro"]
