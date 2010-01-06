@@ -4,7 +4,7 @@ Transparent (unobtrusive) Observers for your Rubies.
 
 == Why?
 
-Developed for an specific need we had at <a href="http://www.busk.com">Busk</a>, Sentinel is a very small library that provides a way to add what we call "Transparent Observers" to your Ruby code. This means that you do not need to modify the observed methods (following the most common implementation of Observers), just use a mixin and declare your observers.
+Developed for an specific need we had at Busk (http://www.busk.com), Sentinel is a very small library that provides a way to add what we call "Transparent Observers" to your Ruby code. This means that you do not need to modify the observed methods (following the most common implementation of Observers), just use a mixin and declare your observers.
 
 == How?
 
