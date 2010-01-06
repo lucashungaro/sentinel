@@ -10,25 +10,21 @@ Developed for an specific need we had at "Busk.com":http://busk.com, Sentinel is
 
 First, install the gem:
 
-<pre>
   $ [sudo] gem install sentinel
-</pre>
+
 
 Then, add it as a dependency in your code using your favorite way (a simple require or mechanisms the bundler gem). 
 
 To use it, first you'll need an observer class that responds to a method called _notify_ (which can be a class or instance method). All the observed method's arguments will be passed to this method, hence the _*args_.
 
-<pre>
 class MyObserver
   def self.notify(*args)
 	puts "Do your thing!"
   end
 end
-</pre>
 
 Then, simple include the _Sentinel_ module in the class and declare the observer. Sentinel can observe both class and instance methods:
 
-<pre>
 class MyClass
   include Sentinel
 
@@ -43,14 +39,11 @@ class MyClass
   observe :instance_method, :notify => MyObserver
   observe :class_method, :notify => MyObserver, :class_method => true #to observe a class method
 end
-</pre>
 
 If we wanted to use instances of the Observer instead of the class itself, the declarations would be:
 
-<pre>
   observe :instance_method, :notify => MyObserver.new
   observe :class_method, :notify => MyObserver.new, :class_method => true #to observe a class method
-</pre>
 
 In summary, any object the responds to _notify_ will be accepted.
 
