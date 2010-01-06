@@ -36,7 +36,7 @@ class MyClass
     puts "Hi from the instance method!"
   end
 
-  def class_method
+  def self.class_method
     puts "Hi from the class method!"
   end
 
