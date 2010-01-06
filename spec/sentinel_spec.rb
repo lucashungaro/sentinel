@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 require File.expand_path(File.dirname(__FILE__) + '/fixtures/my_observer')
 require File.expand_path(File.dirname(__FILE__) + '/fixtures/subject')
 
-describe "Watchable" do
+describe "Sentinel" do
   context "defining an observer for a method" do
     
     context "with the minimum required options" do
@@ -14,23 +14,13 @@ describe "Watchable" do
         Subject.send(:observe, :instance_method, :notify => MyObserver)
         MyObserver.expects(:notify)
 
-        Subject.new.instance_method
+        Subject.new.instance_method.should == "hi from instance method!"
       end
       
       it "should notify the specified Observer when calling an instance method" do
         Subject.send(:observe, :class_method, :notify => MyObserver, :class_method => true)
         MyObserver.expects(:notify)
         
-        Subject.class_method
-      end
-      
-      it "should not modify the original method return value" do
-        Subject.send(:observe, :instance_method, :notify => MyObserver)
-        Subject.send(:observe, :class_method, :notify => MyObserver, :class_method => true)
-        
-        MyObserver.expects(:notify).twice
-
-        Subject.new.instance_method.should == "hi from instance method!"
         Subject.class_method.should == "hi from class method!"
       end
       

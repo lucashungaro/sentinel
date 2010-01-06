@@ -1,4 +1,4 @@
-= Watcher
+= Sentinel
 
 Transparent (unobtrusive) Observers for your Rubies.
 

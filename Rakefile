@@ -4,11 +4,11 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "watcher"
+    gem.name = "sentinel"
     gem.summary = %Q{Transparent (unobtrusive) Observers for your Ruby code}
     gem.description = %Q{Transparent (unobtrusive) Observers for your Ruby code}
     gem.email = "lucashungaro@gmail.com"
-    gem.homepage = "http://github.com/lucashungaro/watcher"
+    gem.homepage = "http://github.com/lucashungaro/sentinel"
     gem.authors = ["Lucas Húngaro"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_development_dependency "mocha", ">= 0.9.8"
@@ -40,7 +40,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "watcher #{version}"
+  rdoc.title = "sentinel #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
