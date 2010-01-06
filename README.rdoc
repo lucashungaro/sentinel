@@ -1,4 +1,4 @@
-= watcher
+= Watcher
 
 Transparent (unobtrusive) Observers for your Rubies.
 
