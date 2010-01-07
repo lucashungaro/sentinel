@@ -14,4 +14,12 @@ class Subject
   def self.class_method_with_params(*params)
     "hi from class method with params!"
   end
+  
+  def instance_returning_something
+    42
+  end
+  
+  def self.class_returning_something
+    42
+  end
 end
