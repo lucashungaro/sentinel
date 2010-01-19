@@ -1,4 +1,4 @@
-class Subject
+class SentinelSubject
   def instance_method
     "hi from instance method!"
   end
