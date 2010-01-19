@@ -9,22 +9,22 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Lucas H\303\272ngaro"]
-  s.date = %q{2010-01-06}
+  s.date = %q{2010-01-19}
   s.description = %q{Transparent (unobtrusive) Observers for your Ruby code}
   s.email = %q{lucashungaro@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.rdoc"
+     "README.textile"
   ]
   s.files = [
     ".document",
      ".gitignore",
      "LICENSE",
-     "README.rdoc",
+     "README.textile",
      "Rakefile",
      "VERSION",
      "lib/sentinel.rb",
-     "lib/sentinel/watchable.rb",
+     "sentinel.gemspec",
      "spec/fixtures/my_observer.rb",
      "spec/fixtures/subject.rb",
      "spec/sentinel_spec.rb",
