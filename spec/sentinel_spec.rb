@@ -4,27 +4,27 @@ require File.expand_path(File.dirname(__FILE__) + '/fixtures/sentinel_subject')
 
 describe Sentinel, "defining an observer for a method" do
   before(:all) do
-    SentinelSubject.send(:include, Sentinel)
+    MyObserver.send(:include, Sentinel)
   end
   
   context "with the minimum required options" do
     it "should notify the specified Observer when calling a class method" do
-      SentinelSubject.send(:observe, :instance_method, :notify => MyObserver)
+      MyObserver.send(:observe, SentinelSubject, :instance_method)
       MyObserver.expects(:notify)
 
       SentinelSubject.new.instance_method
     end
     
     it "should notify the specified Observer when calling an instance method" do
-      SentinelSubject.send(:observe, :class_method, :notify => MyObserver, :class_method => true)
+      MyObserver.send(:observe, SentinelSubject, :class_method, :class_method => true)
       MyObserver.expects(:notify)
       
       SentinelSubject.class_method
     end
     
     it "should not modify the observed methods output" do
-      SentinelSubject.send(:observe, :class_returning_something, :notify => MyObserver, :class_method => true)
-      SentinelSubject.send(:observe, :instance_returning_something, :notify => MyObserver)
+      MyObserver.send(:observe, SentinelSubject, :class_returning_something, :class_method => true)
+      MyObserver.send(:observe, SentinelSubject, :instance_returning_something)
       
       MyObserver.expects(:notify).twice
 
@@ -34,8 +34,8 @@ describe Sentinel, "defining an observer for a method" do
     
     context "observing methods with parameters" do
       it "should pass all parameters of the observed methods to the Observer" do
-        SentinelSubject.send(:observe, :class_method_with_params, :notify => MyObserver, :class_method => true)
-        SentinelSubject.send(:observe, :instance_method_with_params, :notify => MyObserver)
+        MyObserver.send(:observe, SentinelSubject, :class_method_with_params, :class_method => true)
+        MyObserver.send(:observe, SentinelSubject, :instance_method_with_params)
 
         MyObserver.expects(:notify).twice.with("texto", 1)
 
