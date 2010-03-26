@@ -9,9 +9,13 @@ module Sentinel
     def observe(class_name, method_name, options = {})
       sentinel = self
 
+      options = {
+        :method_to_notify => :notify
+      }.merge(options)
+
       body = <<-CODE
         define_method "#{method_name}_with_observer" do |*args|
-          sentinel.notify(*args)
+          sentinel.send("#{options[:method_to_notify]}", *args)
           self.send("#{method_name}_without_observer", *args)
         end
 
