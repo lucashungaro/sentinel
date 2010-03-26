@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sentinel}
-  s.version = "0.1.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Lucas H\303\272ngaro"]
-  s.date = %q{2010-01-19}
+  s.date = %q{2010-03-25}
   s.description = %q{Transparent (unobtrusive) Observers for your Ruby code}
   s.email = %q{lucashungaro@gmail.com}
   s.extra_rdoc_files = [
@@ -23,10 +23,11 @@ Gem::Specification.new do |s|
      "README.textile",
      "Rakefile",
      "VERSION",
+     "lib/metaid.rb",
      "lib/sentinel.rb",
      "sentinel.gemspec",
      "spec/fixtures/my_observer.rb",
-     "spec/fixtures/subject.rb",
+     "spec/fixtures/sentinel_subject.rb",
      "spec/sentinel_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
@@ -38,7 +39,7 @@ Gem::Specification.new do |s|
   s.summary = %q{Transparent (unobtrusive) Observers for your Ruby code}
   s.test_files = [
     "spec/fixtures/my_observer.rb",
-     "spec/fixtures/subject.rb",
+     "spec/fixtures/sentinel_subject.rb",
      "spec/sentinel_spec.rb",
      "spec/spec_helper.rb"
   ]
