@@ -16,7 +16,7 @@ $ [sudo] gem install sentinel
 
 Then, add it as a dependency in your code using your favorite way (a simple require or mechanisms like the Bundler gem).
 
-To use it, first you'll need an observer class with the Sentinel mixin. This class contains the methods to be notified and the configuration specifying what subject methods will be called. See an example below:
+To use it, first you'll need an observer class with the Sentinel mixin. This class contains the methods to be notified and the configuration specifying what subject methods will be observed. See an example below:
 
 <pre>
 class MyObserver
@@ -51,6 +51,7 @@ end
 
 And... that's it! Every time the subject (in this case, MyClass) method is called, the specified observer method will be called *before* it, then it will run normally. The parameters passed to the subject method are passed to the observer method via the *args array. The options hash contains the key :subject, which contains the actual subject object in case you want to use it, like below:
 
+<pre>
 class MyObserver
   include Sentinel
 
