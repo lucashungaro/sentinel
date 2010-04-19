@@ -1,9 +1,9 @@
 class MyObserver
-  def self.notify(*args)
+  def self.notify(options, *args)
     "Observing!"
   end
 
-  def self.another_method(*args)
+  def self.another_method(options, *args)
     "Observing!"
   end
 end

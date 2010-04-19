@@ -37,10 +37,13 @@ describe Sentinel, "defining an observer for a method" do
         MyObserver.send(:observe, SentinelSubject, :class_method_with_params, :class_method => true)
         MyObserver.send(:observe, SentinelSubject, :instance_method_with_params)
 
-        MyObserver.expects(:notify).twice.with("texto", 1)
+        subject = SentinelSubject.new
+
+        MyObserver.expects(:notify).once.with({:subject => SentinelSubject}, "texto", 1)
+        MyObserver.expects(:notify).once.with({:subject => subject}, "texto", 1)
 
         SentinelSubject.class_method_with_params("texto", 1)
-        SentinelSubject.new.instance_method_with_params("texto", 1)
+        subject.instance_method_with_params("texto", 1)
       end
     end
 

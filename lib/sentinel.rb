@@ -15,7 +15,8 @@ module Sentinel
 
       body = <<-CODE
         define_method "#{method_name}_with_observer" do |*args|
-          sentinel.send("#{options[:method_to_notify]}", *args)
+          observer_opt = {:subject => self}
+          sentinel.send("#{options[:method_to_notify]}", observer_opt, *args)
           self.send("#{method_name}_without_observer", *args)
         end
 
