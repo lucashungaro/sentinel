@@ -1,6 +1,10 @@
+Error: No matching action defined in "/Users/lucashungaro/.shell_method_missing.rb"
+Error: No matching action defined in "/Users/lucashungaro/.shell_method_missing.rb"
 h1. Sentinel
 
 Transparent (unobtrusive) Observers for your Rubies.
+
+Does Sentinel helps your daily work with Ruby? So, "please recommend me in Work With Rails":http://workingwithrails.com/recommendation/new/person/9370-lucas-h-ngaro and thanks for your kindness! :)
 
 h2. Why?
 
