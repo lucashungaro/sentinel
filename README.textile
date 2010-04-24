@@ -1,5 +1,3 @@
-Error: No matching action defined in "/Users/lucashungaro/.shell_method_missing.rb"
-Error: No matching action defined in "/Users/lucashungaro/.shell_method_missing.rb"
 h1. Sentinel
 
 Transparent (unobtrusive) Observers for your Rubies.
