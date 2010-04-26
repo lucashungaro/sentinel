@@ -10,14 +10,28 @@ module Sentinel
       sentinel = self
 
       options = {
-        :method_to_notify => :notify
+        :method_to_notify => :notify,
+        :intercept => :before
       }.merge(options)
+
+      if options[:intercept] == :before
+        calls = <<-CODE
+          sentinel.send("#{options[:method_to_notify]}", observer_opt, *args)
+          self.send("#{method_name}_without_observer", *args)
+        CODE
+      else
+        calls = <<-CODE
+          result = self.send("#{method_name}_without_observer", *args)
+          observer_opt[:result] = result
+          sentinel.send("#{options[:method_to_notify]}", observer_opt, *args)
+          result
+        CODE
+      end
 
       body = <<-CODE
         define_method "#{method_name}_with_observer" do |*args|
           observer_opt = {:subject => self}
-          sentinel.send("#{options[:method_to_notify]}", observer_opt, *args)
-          self.send("#{method_name}_without_observer", *args)
+          #{calls}
         end
 
         alias_method "#{method_name}_without_observer", method_name
