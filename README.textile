@@ -51,16 +51,20 @@ class MyClass
 end
 </pre>
 
-And... that's it! Every time the subject (in this case, MyClass) method is called, the specified observer method will be called *before* it, then it will run normally. The parameters passed to the subject method are passed to the observer method via the *args array. The options hash contains the key :subject, which contains the actual subject object in case you want to use it, like below:
+And... that's it! Every time the subject (in this case, MyClass) method is called, the specified observer method will be called too. By default, the observer method is called *before* the subject method, but you can call it *after* the execution (will see it in the next example).
+
+The parameters passed to the subject method are passed to the observer method via the *args array. The options hash contains the key :subject, which contains the actual subject object and the key :result, which contains the return of the observed method in case you intercepted the call after its execution.
+
+Below is a more "advanced" use of the observers:
 
 <pre>
 class MyObserver
   include Sentinel
 
-  observe MyClass, :instance_method
+  observe MyClass, :instance_method, :intercept => :after
 
   def self.notify(options, *args)
-    puts "Called from #{options[:subject]} with arguments #{args.inspect}"
+    puts "Called from #{options[:subject]} with arguments #{args.inspect} and returned #{options[:result]}"
   end
 end
 </pre>
