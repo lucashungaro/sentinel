@@ -16,6 +16,13 @@ First, install the gem:
 $ [sudo] gem install sentinel
 </pre>
 
+On Rails, you can install as plugin:
+
+<pre>
+  $ cd your_rails_app
+  $ ./script/plugin install http://github.com/lucashugaro/sentinel.git
+</pre>
+
 Then, add it as a dependency in your code using your favorite way (a simple require or mechanisms like the Bundler gem).
 
 To use it, first you'll need an observer class with the Sentinel mixin. This class contains the methods to be notified and the configuration specifying what subject methods will be observed. See an example below:
