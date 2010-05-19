@@ -11,7 +11,7 @@ module Sentinel
 
       options = {
         :method_to_notify => :notify,
-        :intercept => :before
+        :intercept => :after
       }.merge(options)
 
       if options[:intercept] == :before

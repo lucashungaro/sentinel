@@ -13,24 +13,28 @@ describe Sentinel do
   end
 
   context "basic premises" do
-    it "should not modify the subject method output when called before it" do
+    it "should not modify the subject method output when called after it" do
       MyObserver.send(:observe, SentinelSubject, :class_method, :class_method => true)
       MyObserver.send(:observe, SentinelSubject, :instance_method)
+      subject = SentinelSubject.new
 
-      MyObserver.expects(:notify).twice
+      MyObserver.expects(:notify).once.with({:result => 42, :subject => subject})
+      MyObserver.expects(:notify).once.with({:result => 42, :subject => SentinelSubject})
 
       SentinelSubject.class_method.should == 42
-      SentinelSubject.new.instance_method.should == 42
+      subject.instance_method.should == 42
     end
     
-    it "should not modify the subject method output when called after it" do
-      MyObserver.send(:observe, SentinelSubject, :class_method, :class_method => true, :intercept => :after)
-      MyObserver.send(:observe, SentinelSubject, :instance_method, :intercept => :after)
+    it "should not modify the subject method output when called before it" do
+      MyObserver.send(:observe, SentinelSubject, :class_method, :class_method => true, :intercept => :before)
+      MyObserver.send(:observe, SentinelSubject, :instance_method, :intercept => :before)
+      subject = SentinelSubject.new
 
-      MyObserver.expects(:notify).twice
+      MyObserver.expects(:notify).once.with({:subject => SentinelSubject})
+      MyObserver.expects(:notify).once.with({:subject => subject})
 
       SentinelSubject.class_method.should == 42
-      SentinelSubject.new.instance_method.should == 42
+      subject.instance_method.should == 42
     end
     
     it "should pass all parameters of the observed methods to the observer" do
@@ -39,8 +43,8 @@ describe Sentinel do
 
       subject = SentinelSubject.new
 
-      MyObserver.expects(:notify).once.with({:subject => SentinelSubject}, "texto", 1)
-      MyObserver.expects(:notify).once.with({:subject => subject}, "texto", 1)
+      MyObserver.expects(:notify).once.with({:result => 'hi from class method with params!', :subject => SentinelSubject}, "texto", 1)
+      MyObserver.expects(:notify).once.with({:result => 'hi from instance method with params!', :subject => subject}, "texto", 1)
 
       SentinelSubject.class_method_with_params("texto", 1)
       subject.instance_method_with_params("texto", 1)
@@ -62,11 +66,11 @@ describe Sentinel do
       SentinelSubject.class_method
     end
     
-    it "should be called before the method execution" do
+    it "should be called after the method execution" do
       MyObserver.send(:observe, SentinelSubject, :instance_method)
       subject = SentinelSubject.new
       
-      MyObserver.expects(:notify).once.with({:subject => subject})
+      MyObserver.expects(:notify).once.with({:result => 42, :subject => subject})
 
       subject.instance_method
     end
@@ -87,8 +91,8 @@ describe Sentinel do
     
     context "when intercepting the call after the method execution" do
       it "should pass the result of the execution to the observer" do
-        MyObserver.send(:observe, SentinelSubject, :instance_method, :intercept => :after)
-        MyObserver.send(:observe, SentinelSubject, :class_method, :intercept => :after, :class_method => true)
+        MyObserver.send(:observe, SentinelSubject, :instance_method)
+        MyObserver.send(:observe, SentinelSubject, :class_method, :class_method => true)
         
         subject = SentinelSubject.new
         
