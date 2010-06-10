@@ -16,14 +16,14 @@ First, install the gem:
 $ [sudo] gem install sentinel
 </pre>
 
-On Rails, you can install as plugin:
+Then, add it as a dependency in your code using your favorite way (a simple require or mechanisms like the Bundler gem).
+
+On Rails, you can install as a plugin:
 
 <pre>
-  $ cd your_rails_app
-  $ ./script/plugin install http://github.com/lucashugaro/sentinel.git
+$ cd your_rails_app
+$ ./script/plugin install http://github.com/lucashugaro/sentinel.git
 </pre>
-
-Then, add it as a dependency in your code using your favorite way (a simple require or mechanisms like the Bundler gem).
 
 To use it, first you'll need an observer class with the Sentinel mixin. This class contains the methods to be notified and the configuration specifying what subject methods will be observed. See an example below:
 
@@ -35,11 +35,11 @@ class MyObserver
   observe MyClass, :class_method, :method_to_notify => :notify_class_method, :class_method => true #to observe a class method
 
   def self.notify(options, *args)
-    puts "Do your thing!"
+    puts "Do your thing! Called from #{options[:subject]}"
   end
 
   def self.notify_class_method(options, *args)
-    puts "Called class_method!"
+    puts "Called class_method! Returned #{options[:result]}"
   end
 end
 </pre>
@@ -58,11 +58,11 @@ class MyClass
 end
 </pre>
 
-And... that's it! Every time the subject (in this case, MyClass) method is called, the specified observer method will be called too. By default, the observer method is called *after* the subject method, but you can call it *before* the execution (will see it in the next example).
+And... that's it! Every time the subject (in this case, MyClass) method is called, the specified observer method will be called too. By default, the observer method is called *after* the subject method execution, but you can call it *before* it too (we'll see that in the next example).
 
-The parameters passed to the subject method are passed to the observer method via the *args array. The options hash contains the key :subject, which contains the actual subject object and the key :result, which contains the return of the observed method in case you intercepted the call after its execution.
+The parameters passed to the subject method are passed to the observer method via the *args array. The observer method also receives an options hash with the key :subject, which contains the actual subject object and the key :result, which contains the return of the observed method in case you intercepted the call after its execution.
 
-Below is a more "advanced" use of the observers:
+Below is an example showing the interception before the execution:
 
 <pre>
 class MyObserver
@@ -71,7 +71,7 @@ class MyObserver
   observe MyClass, :instance_method, :intercept => :before
 
   def self.notify(options, *args)
-    puts "Called from #{options[:subject]} with arguments #{args.inspect} and returned #{options[:result]}"
+    puts "Called from #{options[:subject]} with arguments #{args.inspect}"
   end
 end
 </pre>
@@ -88,7 +88,7 @@ h2. Note on Patches/Pull Requests
 
 h2. Contributors
 
-"Celestino Gomes":http://twitter.com/tinogomes
+* "Celestino Gomes":http://twitter.com/tinogomes
 
 h3. Copyright
 
