@@ -90,6 +90,7 @@ h2. Contributors
 
 * "Celestino Gomes":http://twitter.com/tinogomes
 
-h3. Copyright
+h3. License
 
-Copyright (c) 2010 Lucas Húngaro. See LICENSE for details.
+sentinel is released under the MIT license. See "MIT LICENSE":https://github.com/lucashungaro/sentinel/blob/master/MIT-LICENSE.
+
