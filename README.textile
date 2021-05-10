@@ -2,28 +2,14 @@ h1. Sentinel
 
 Transparent (unobtrusive) Observers for your Rubies.
 
-Does Sentinel helps your daily work with Ruby? So, "please recommend me in Work With Rails":http://workingwithrails.com/recommendation/new/person/9370-lucas-h-ngaro and thanks for your kindness! :)
 
 h2. Why?
 
-Developed for an specific need we had at "Busk":http://www.busk.com, Sentinel is a very small library that provides a way to add what we call "Transparent Observers" to your Ruby code. This means that you do not need to modify the observed methods (following the most common implementation of Observers), just use a mixin and declare your observers.
+Sentinel is a very small library that provides a way to add what we call "Transparent Observers" to your Ruby code. This means that you do not need to modify the observed methods (following the most common implementation of Observers), just use a mixin and declare your observers.
 
 h2. How?
 
-First, install the gem:
-
-<pre>
-$ [sudo] gem install sentinel
-</pre>
-
-Then, add it as a dependency in your code using your favorite way (a simple require or mechanisms like the Bundler gem).
-
-On Rails, you can install as a plugin:
-
-<pre>
-$ cd your_rails_app
-$ ./script/plugin install http://github.com/lucashugaro/sentinel.git
-</pre>
+First, install it as you would any regular Ruby gem.
 
 To use it, first you'll need an observer class with the Sentinel mixin. This class contains the methods to be notified and the configuration specifying what subject methods will be observed. See an example below:
 
